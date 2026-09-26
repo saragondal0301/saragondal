@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sara Gondal – historiestudent, formidler og forskningsstøtte. Kreativ portefølje.">
+    <title>Sara Gondal — Historie, formidling & forskning</title>
+    <style>
+        /* ═══════════════════════════════════════════════
+           ZALANDO INSPIRERT FARGE- OG DESIGNSYSTEM
+           Hero Orange: #FF6900
+           Dyp Sort: #1A1A1A
+           ═══════════════════════════════════════════════ */
+        :root {
+            --orange: #FF6900;
+            --orange-soft: #FF8533;
+            --orange-pale: #FFF3E8;
+            --black: #1A1A1A;
+            --black-soft: #2D2D2D;
+            --white: #FFFFFF;
+            --grey: #F5F5F5;
+            --grey-mid: #E0E0E0;
+            --text: #1A1A1A;
+            --text-muted: #6B6B6B;
+            --radius: 12px;
+            --radius-lg: 24px;
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 12px 48px rgba(255, 105, 0, 0.2);
+            --font-display: "Helvetica Neue", "Arial Black", sans-serif;
+            --font-body: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--white);
+            color: var(--text);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: var(--orange);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover,
+        a:focus {
+            color: var(--orange-soft);
+            text-decoration: underline;
+        }
+
+        /* ── ANIMASJONER ── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        .animate-in {
+            animation: fadeUp 0.7s ease forwards;
+            opacity: 0;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+
+        /* ── HEADER ── */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--grey-mid);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--orange);
+        }
+
+        .logo:hover {
+            text-decoration: none;
+            color: var(--black);
+        }
+
+        .header-nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .header-nav a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.4rem 0.9rem;
+            border-radius: 999px;
+            transition: all 0.2s ease;
+        }
+
+        .header-nav a:hover,
+        .header-nav a:focus {
+            background: var(--orange-pale);
+            color: var(--orange);
+            text-decoration: none;
+        }
+
+        .header-nav a[aria-current="page"] {
+            background: var(--orange);
+            color: var(--white);
+        }
+
+        /* ── HERO ── */
+        .hero {
+            padding: 4rem 2rem 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-eyebrow {
+            display: inline-block;
+            background: var(--orange);
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 0.4rem 1rem;
+            border-radius: 999px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            color: var(--black);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 .highlight {
+            color: var(--orange);
+            position: relative;
+        }
+
+        .hero h1 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--orange);
+            opacity: 0.2;
+            border-radius: 4px;
+            z-index: -1;
+        }
+
+        .hero-lead {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 520px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 0.9rem 2rem;
+            border-radius: 999px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--orange);
+            color: var(--white);
+            border-color: var(--orange);
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background: var(--orange-soft);
+            border-color: var(--orange-soft);
+            color: var(--white);
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 105, 0, 0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--black);
+            border-color: var(--black);
+        }
+
+        .btn-outline:hover,
+        .btn-outline:focus {
+            background: var(--black);
+            color: var(--white);
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+
+        /* Kreativ visuell blokk */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .visual-card {
+            width: 100%;
+            max-width: 420px;
+            aspect-ratio: 4 / 5;
+            background: var(--orange-pale);
+            border-radius: var(--radius-lg);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .visual-card::before {
+            content: 'SG';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: var(--font-display);
+            font-size: 10rem;
+            font-weight: 900;
+            color: var(--orange);
+            opacity: 0.15;
+            letter-spacing: -8px;
+        }
+
+        .visual-float {
+            position: absolute;
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 1rem 1.5rem;
+            box-shadow: var(--shadow);
+            font-size: 0.85rem;
+            font-weight: 600;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .visual-float:nth-child(1) {
+            top: 12%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .visual-float:nth-child(2) {
+            bottom: 18%;
+            right: -8%;
+            animation-delay: 1.5s;
+        }
+
+        .visual-float:nth-child(3) {
+            bottom: 8%;
+            left: 8%;
+            animation-delay: 3s;
+        }
+
+        .visual-float .dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--orange);
+            margin-right: 0.4rem;
+        }
+
+        /* ── MARQUEE ── */
+        .marquee {
+            background: var(--black);
+            color: var(--white);
+            padding: 1rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-track {
+            display: inline-flex;
+            animation: marquee 20s linear infinite;
+        }
+
+        .marquee-item {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .marquee-item .sep {
+            color: var(--orange);
+            font-size: 1.4rem;
+        }
+
+        /* ── SEKSJONER ── */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 900;
+            letter-spacing: -1px;
+            color: var(--black);
+            line-height: 1.1;
+        }
+
+        /* Om meg */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-card {
+            background: var(--orange-pale);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            position: sticky;
+            top: 100px;
+        }
+
+        .about-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .about-card ul {
+            list-style: none;
+        }
+
+        .about-card li {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(255, 105, 0, 0.15);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .about-card li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--orange);
+            flex-shrink: 0;
+        }
+
+        .about-text p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Publikasjoner */
+        .pub-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .pub-card {
+            background: var(--white);
+            border: 1px solid var(--grey-mid);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pub-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--orange);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .pub-card:hover {
+            border-color: var(--orange);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .pub-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .pub-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 0.8rem;
+        }
+
+        .pub-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 0.6rem;
+            line-height: 1.3;
+        }
+
+        .pub-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .pub-card .pub-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--grey-mid);
+            padding-top: 1rem;
+        }
+
+        /* Erfaring – tidslinje */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--orange);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.3rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--orange);
+            border: 3px solid var(--white);
+            box-shadow: 0 0 0 2px var(--orange);
+        }
+
+        .timeline-item h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 0.2rem;
+        }
+
+        .timeline-item .time {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--orange);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* Kontakt */
+        .contact-section {
+            background: var(--black);
+            color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: 'SG';
+            position: absolute;
+            right: -5%;
+            bottom: -20%;
+            font-family: var(--font-display);
+            font-size: 16rem;
+            font-weight: 900;
+            color: var(--orange);
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        .contact-section .section-label {
+            color: var(--orange-soft);
+        }
+
+        .contact-section .section-title {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .contact-section p {
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            font-size: 1.05rem;
+        }
+
+        .contact-section .btn-primary {
+            background: var(--orange);
+            color: var(--white);
+            font-size: 1rem;
+            padding: 1rem 2.5rem;
+        }
+
+        .contact-section .btn-primary:hover {
+            background: var(--orange-soft);
+            box-shadow: 0 8px 32px rgba(255, 105, 0, 0.4);
+        }
+
+        /* ── FOOTER ── */
+        .site-footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--grey-mid);
+            margin-top: 3rem;
+        }
+
+        .site-footer .footer-links {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .site-footer a {
+            color: var(--text-muted);
+        }
+
+        .site-footer a:hover {
+            color: var(--orange);
+        }
+
+        /* ── RESPONSIVT ── */
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-card {
+                position: static;
+            }
+
+            .contact-section {
+                padding: 3rem 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header-inner {
+                padding: 0.8rem 1.2rem;
+            }
+
+            .header-nav ul {
+                gap: 0.2rem;
+            }
+
+            .header-nav a {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .hero {
+                padding: 2.5rem 1.2rem 3rem;
+            }
+
+            .section {
+                padding: 3rem 1.2rem;
+            }
+
+            .visual-float {
+                font-size: 0.75rem;
+                padding: 0.7rem 1rem;
+            }
+
+            .marquee-item {
+                font-size: 0.9rem;
+                padding: 0 1rem;
+            }
+        }
+
+        /* Reduser bevegelse for tilgjengelighet */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ HEADER ═══ -->
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="#" class="logo">sara<span>gondal</span></a>
+            <nav class="header-nav" aria-label="Hovedmeny">
+                <ul>
+                    <li><a href="#om" aria-current="page">Om</a></li>
+                    <li><a href="#publikasjoner">Publikasjoner</a></li>
+                    <li><a href="#erfaring">Erfaring</a></li>
+                    <li><a href="#kontakt">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hero" id="om">
+        <div class="hero-grid">
+            <div>
+                <span class="hero-eyebrow animate-in delay-1">Historie · Formidling · Forskning</span>
+                <h1 class="animate-in delay-2">
+                    Jeg skriver om <span class="highlight">historie</span>, medborgerskap og digitalisering.
+                </h1>
+                <p class="hero-lead animate-in delay-3">
+                    Historiestudent ved Universitetet i Oslo. Erfaring fra forskningsstøtte,
+                    undervisningsutvikling, formidling og digitale verktøy.
+                </p>
+                <div class="hero-actions animate-in delay-4">
+                    <a href="#publikasjoner" class="btn btn-primary">Se publikasjoner →</a>
+                    <a href="#kontakt" class="btn btn-outline">Ta kontakt</a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="visual-card">
+                    <div class="visual-float">
+                        <span class="dot"></span> Argument
+                    </div>
+                    <div class="visual-float">
+                        <span class="dot"></span> Sivilisasjonen
+                    </div>
+                    <div class="visual-float">
+                        <span class="dot"></span> MOLO Tidsskrift
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ MARQUEE ═══ -->
+    <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+            <span class="marquee-item">Tekst <span class="sep">·</span></span>
+            <span class="marquee-item">Medborgerskap <span class="sep">·</span></span>
+            <span class="marquee-item">Demokrati <span class="sep">·</span></span>
+            <span class="marquee-item">Digitalisering <span class="sep">·</span></span>
+            <span class="marquee-item">Historie <span class="sep">·</span></span>
+            <span class="marquee-item">Formidling <span class="sep">·</span></span>
+            <span class="marquee-item">Tekst <span class="sep">·</span></span>
+            <span class="marquee-item">Medborgerskap <span class="sep">·</span></span>
+            <span class="marquee-item">Demokrati <span class="sep">·</span></span>
+            <span class="marquee-item">Digitalisering <span class="sep">·</span></span>
+            <span class="marquee-item">Historie <span class="sep">·</span></span>
+            <span class="marquee-item">Formidling <span class="sep">·</span></span>
+        </div>
+    </div>
+
+    <!-- ═══ OM MEG ═══ -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">Om meg</div>
+            <h2 class="section-title">Humanist med teknisk blikk</h2>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-card">
+                <h3>Kjernekompetanse</h3>
+                <ul>
+                    <li>Forsknings- og prosjektstøtte</li>
+                    <li>Tekstproduksjon og redigering</li>
+                    <li>Formidling og kunnskapsorganisering</li>
+                    <li>Seminarer og konferanser</li>
+                    <li>Digitalt arbeid og brukerstøtte</li>
+                    <li>Administrativ koordinering</li>
+                </ul>
+            </div>
+
+            <div class="about-text">
+                <p>
+                    Jeg kombinerer humanistisk fagbakgrunn med erfaring fra universitetssektoren,
+                    teknisk kompetanse og formidling. Jeg har tatt 40-gruppe i nordisk litteratur
+                    og er særlig interessert i hvordan tekst, historie, kultur og digitale
+                    teknologier påvirker hvordan kunnskap formidles.
+                </p>
+                <p>
+                    Gjennom arbeid ved <strong>CELL – Senter for erfaringsbasert juridisk læring</strong>
+                    og <strong>LINK</strong> har jeg bidratt med læringsstøtte, undervisningsutvikling,
+                    administrativ koordinering og arrangementslogistikk for over 250 deltakere.
+                </p>
+                <p>
+                    Jeg har publisert artikler i <em>Argument</em>, <em>Sivilisasjonen</em> og
+                    <em>MOLO Tidsskrift</em>, og har blant annet intervjuet forsker Øyvind
+                    Kopperud ved HL-senteret og samarbeidet med professor Knut Ødegård ved IAKH.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ PUBLIKASJONER ═══ -->
+    <section class="section" id="publikasjoner">
+        <div class="section-header">
+            <div class="section-label">Publikasjoner</div>
+            <h2 class="section-title">Utvalgte tekster</h2>
+        </div>
+
+        <div class="pub-grid">
+            <article class="pub-card">
+                <span class="pub-tag">MOLO Tidsskrift</span>
+                <h3>Meta-governance og byråkratiets utvikling</h3>
+                <p>En utforskning av hvorfor meta-governance-teorier oppsto, og hvordan de kan forstås i lys av byråkratiets utvikling.</p>
+                <div class="pub-meta">12. mai 2025</div>
+            </article>
+
+            <article class="pub-card">
+                <span class="pub-tag">Sivilisasjonen</span>
+                <h3>Før var fritid en betingelse for dannelse</h3>
+                <p>I vår tids «hyperaktivitet» flykter vi ikke fra undertrykkelse, men fra stillhet.</p>
+                <div class="pub-meta">14. juni 2025</div>
+            </article>
+
+            <article class="pub-card">
+                <span class="pub-tag">Argument</span>
+                <h3>Rekonstruere fremtiden</h3>
+                <p>Det finnes øyeblikk i historien som ikke føles som høydepunkt, men som likevel former det som kommer.</p>
+                <div class="pub-meta">13. september 2025</div>
+            </article>
+
+            <article class="pub-card">
+                <span class="pub-tag">Intervju</span>
+                <h3>Øyvind Kopperud, HL-senteret</h3>
+                <p>Intervju med forsker ved HL-senteret om jødisk historie, antisemittisme og okkupasjonstiden.</p>
+                <div class="pub-meta">Argument</div>
+            </article>
+
+            <article class="pub-card">
+                <span class="pub-tag">Samarbeid</span>
+                <h3>Professor Knut Ødegård, IAKH</h3>
+                <p>Samarbeid med professor ved Institutt for arkeologi, konservering og historie.</p>
+                <div class="pub-meta">Universitetet i Oslo</div>
+            </article>
+
+            <article class="pub-card">
+                <span class="pub-tag">Konferanse</span>
+                <h3>Utdanningskonferansen 2025</h3>
+                <p>Arrangementslogistikk, deltakerveiledning og praktisk koordinering for over 250 deltakere.</p>
+                <div class="pub-meta">LINK, UiO</div>
+            </article>
+        </div>
+    </section>
+
+    <!-- ═══ ERFARING ═══ -->
+    <section class="section" id="erfaring">
+        <div class="section-header">
+            <div class="section-label">Erfaring</div>
+            <h2 class="section-title">Hvor jeg har vært</h2>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="time">2024 – 2025</div>
+                <h3>CELL – Senter for erfaringsbasert juridisk læring</h3>
+                <p>Læringsstøtte, undervisningsutvikling, administrative oppgaver og studentmedvirkning.</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time">2025</div>
+                <h3>LINK – Utdanningskonferansen</h3>
+                <p>Arrangementslogistikk, deltakerveiledning og praktisk koordinering for over 250 deltakere.</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time">2023 – 2024</div>
+                <h3>Høyskolen Kristiania & Handelshøyskolen BI</h3>
+                <p>Brukeradministrasjon, systemhåndtering, feilsøking og teknisk brukerstøtte.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ KONTAKT ═══ -->
+    <section class="section" id="kontakt">
+        <div class="contact-section">
+            <div class="section-label">Kontakt</div>
+            <h2 class="section-title">La oss jobbe sammen</h2>
+            <p>
+                Dersom det finnes behov for studentstøtte i forbindelse med et prosjekt,
+                arrangement, forskningsaktivitet eller formidlingsarbeid, tar jeg gjerne en prat.
+            </p>
+            <a href="mailto:sara.gondal@example.com" class="btn btn-primary">
+                Send e-post →
+            </a>
+        </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="site-footer">
+        <p>© 2025 Sara Gondal · Historiestudent ved Universitetet i Oslo</p>
+        <ul class="footer-links">
+            <li><a href="#om">Om</a></li>
+            <li><a href="#publikasjoner">Publikasjoner</a></li>
+            <li><a href="#erfaring">Erfaring</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+    </footer>
+
+    <!-- ═══ LITEN SCROLL-EFFEKT ═══ -->
+    <script>
+        // Enkel Intersection Observer for fade-in
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-in').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
